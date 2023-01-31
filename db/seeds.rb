@@ -1,15 +1,42 @@
-puts 'seeding user'
-
+puts 'seeding users'
+user1 = User.create(
+    first_name: 'John',
+    last_name: 'Ly',
+    email: 'john@gmail.com',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaY9NCY7uqhdrALyjkFvWyO2HYlmeeITwcJg&usqp=CAU'
+),
+user2 = User.create(
+    first_name: 'Olivia',
+    last_name: 'Lockhart',
+    email: 'liv@gmail.com',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaY9NCY7uqhdrALyjkFvWyO2HYlmeeITwcJg&usqp=CAU'
+)
 
 puts 'user seeded!'
 
-puts 'seeding workout'
+puts 'seeding event'
+event1 = Event.create(
+    user_id: User.last.id,
+    name: 'Soccer Party!',
+    address: '75 Champ Blvd.',
+    city: 'Manheim',
+    state: 'PA',
+    zipcode: 17545,
+    time: '7:00 PM',
+    date: '2/10/23',
+    description: 'Come play soccer!'
+)
 
+puts 'event seeded!'
 
-puts 'workout seeded!'
+puts 'seeding attendance'
 
-puts 'seeding exercises'
+attendance1 = Attendance.create(user_id: User.first.id, event_id: Event.first.id)
 
+puts 'attendance seeded!'
 
+puts 'seeding comments'
 
-puts 'exercises seeded!'
+comment1 = Comment.create(user_id: User.first.id, event_id: Event.first.id)
+
+puts 'comments seeded!'
