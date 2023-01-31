@@ -3,13 +3,15 @@ user1 = User.create(
     first_name: 'John',
     last_name: 'Ly',
     email: 'john@gmail.com',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaY9NCY7uqhdrALyjkFvWyO2HYlmeeITwcJg&usqp=CAU'
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaY9NCY7uqhdrALyjkFvWyO2HYlmeeITwcJg&usqp=CAU',
+    password: '1234'
 ),
 user2 = User.create(
     first_name: 'Olivia',
     last_name: 'Lockhart',
     email: 'liv@gmail.com',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaY9NCY7uqhdrALyjkFvWyO2HYlmeeITwcJg&usqp=CAU'
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaY9NCY7uqhdrALyjkFvWyO2HYlmeeITwcJg&usqp=CAU',
+    password: '1234'
 )
 
 puts 'user seeded!'
@@ -37,6 +39,6 @@ puts 'attendance seeded!'
 
 puts 'seeding comments'
 
-comment1 = Comment.create(user_id: User.first.id, event_id: Event.first.id)
+comment1 = Comment.create(body: "can't wait!", user_id: User.first.id, event_id: Event.first.id)
 
 puts 'comments seeded!'

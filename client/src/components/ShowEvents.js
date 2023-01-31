@@ -1,9 +1,13 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import EventCard from "./EventCard"
+import Form from "react-bootstrap/Form";
 
-function ShowEvents({ events }){
-    console.log(events[0])
+import EventCard from "./EventCard"
+import FormGroup from 'react-bootstrap/esm/FormGroup';
+
+
+function ShowEvents({ user, events, loading }){
+
 
     const eventDiv = events?.map(event => {
         return (
@@ -21,8 +25,17 @@ function ShowEvents({ events }){
         )
     })
 
+    if (loading) return <h1>Loading...</h1>
     return (
-        <div>
+        <div style={{marginTop: '20px'}}>
+            {user.length !== 0 ? <h1 className='text-center' style={{marginBottom: '40px'}}>Welcome, {user.first_name}!</h1> : null}
+            <h5 className='text-center' style={{marginBottom: '-10px'}}>Search for events by a city near you!</h5>
+            <Form style={{width: '30%', margin: '0 auto', marginTop: '20px'}}>
+                <Form.Control 
+                placeholder='search for an event...' 
+                className='shadow'
+                />
+            </Form>
             <Container>
                 <Row>
                     {eventDiv}
