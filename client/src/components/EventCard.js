@@ -15,6 +15,8 @@ function EventCard({
   user,
   id
 }) {
+
+
   return (
     <div>
       <Col>
@@ -38,6 +40,7 @@ function EventCard({
             <strong>Time:</strong> {time}
           </Card.Text>
           <Button href={`/event/${id}`} style={{ width: "40%", margin: "0 auto" }}>View Event</Button>
+          {/* {user ? <Button href={`/event/${id}`} style={{ width: "40%", margin: "0 auto" }}>View Event</Button> : null} */}
         </Card>
       </Col>
     </div>

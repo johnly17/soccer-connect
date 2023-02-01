@@ -9,7 +9,7 @@ import Map from './Map';
 
 function ShowEvents({ user, events, loading }){
 
-    console.log(events)
+    console.log(user)
 
     const eventDiv = events?.map(event => {
         return (
@@ -23,7 +23,6 @@ function ShowEvents({ user, events, loading }){
             state={event.state}
             time={event.time}
             zipcode={event.zipcode}
-            user={event.user.first_name}
             />
         )
     })
