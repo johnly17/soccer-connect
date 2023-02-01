@@ -17,6 +17,10 @@ function App() {
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
 
+  const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+  console.log(API_KEY)
+
+
   // const city = 'Lancaster'
   // const country = 'USA'
   // useEffect(() => {

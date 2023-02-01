@@ -6,6 +6,8 @@ import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 function Map({ events }) {
   const [locations, setLocations] = useState([]);
 
+
+
   const containerStyle = {
     margin: "30px auto 0 auto",
     width: "600px",
@@ -25,7 +27,7 @@ function Map({ events }) {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
   const arrOfAddress = events.map((event) => {
