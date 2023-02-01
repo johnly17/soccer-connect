@@ -6,12 +6,12 @@ function EventCard({ name, address, city, state, zipcode, date, time, descriptio
     return (
         <div>
             <Col>
-                <Card style={{padding: '20px', marginTop: '20px', width: '50%', border: '2px solid blue'}} className='text-center shadow'>
+                <Card style={{padding: '20px', margin: '50px auto', border: '2px solid blue'}} className='text-center shadow-lg'>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>{description}</Card.Text>
-                    <Card.Text>Where: {address} {city} {state} {zipcode}</Card.Text>
-                    <Card.Text>When: {date}</Card.Text>
-                    <Card.Text>Time: {time}</Card.Text>
+                    <Card.Text><strong>Where:</strong> {address} {city} {state} {zipcode}</Card.Text>
+                    <Card.Text><strong>When:</strong> {date}</Card.Text>
+                    <Card.Text><strong>Time:</strong> {time}</Card.Text>
                     <Button style={{width: '40%', margin: '0 auto'}}>View Event</Button>
                 </Card>
             </Col>

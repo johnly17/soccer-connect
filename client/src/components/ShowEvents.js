@@ -1,13 +1,13 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from "react-bootstrap/Form";
+import Col from 'react-bootstrap/Col';
 
 import EventCard from "./EventCard"
-import FormGroup from 'react-bootstrap/esm/FormGroup';
+import Map from './Map';
 
 
 function ShowEvents({ user, events, loading }){
-
 
     const eventDiv = events?.map(event => {
         return (
@@ -36,8 +36,9 @@ function ShowEvents({ user, events, loading }){
                 className='shadow'
                 />
             </Form>
+            <Map events={events}/>
             <Container>
-                <Row>
+                <Row xs={3}>
                     {eventDiv}
                 </Row>
             </Container>

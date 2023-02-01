@@ -36,6 +36,11 @@
   height: 70vh;
 }
 
+.map {
+  width: 50%;
+  height: 50%;
+}
+
 footer {
   position: fixed;
   left: 0;

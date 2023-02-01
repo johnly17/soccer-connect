@@ -1,4 +1,8 @@
 class Event < ApplicationRecord
+  validates :name, :description, :date, :time, :address, :city, :state, :zipcode, presence: true
+
+
+
   belongs_to :user
   
   has_many :attendances

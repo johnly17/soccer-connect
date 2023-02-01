@@ -9,14 +9,14 @@ before_action :check_owner, only: [:update, :destroy]
     def create
         event = Event.create!(event_params)
         render json: event, status: :created
-    rescue ActiveRecord::InvalidRecord => e
+    rescue ActiveRecord::RecordInvalid => e
         render json: {errors: e.record.errors.full_messages}, status: :unprocessable_entity
     end
 
     private
 
     def event_params
-        params.permit(:name, :description, :address, :city, :state, :zipcode, :date, :time)
+        params.permit(:name, :description, :address, :city, :state, :zipcode, :date, :time, :user_id)
     end
 
     def check_owner

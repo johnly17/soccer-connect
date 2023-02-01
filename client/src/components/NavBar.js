@@ -19,7 +19,7 @@ function NavBar({ user, setUser }) {
       {user.length !== 0 ? (
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="/events">Soccer Connect</Navbar.Brand>
+            <Navbar.Brand href="/events">SOCCER CONNECT</Navbar.Brand>
             <Nav className="me-auto" style={{ margin: "5px", gap: "30px" }}>
               <Nav.Link href="">Home</Nav.Link>
               <NavDropdown title="Events">

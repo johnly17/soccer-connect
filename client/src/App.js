@@ -16,6 +16,20 @@ function App() {
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
 
+  // const city = 'Lancaster'
+  // const country = 'USA'
+  // useEffect(() => {
+  //   fetch(`https://api.api-ninjas.com/v1/geocoding?city=${city}&country=${country}`, {
+  //     method: 'GET',
+  //     headers: { 
+  //       'X-API-KEY': 'EpE1KmfKqzmVA7Y6mvkAYg==ueFD6J6slQMt9sEW',
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .then(r => r.json())
+  //   .then(data => console.log(data))
+  // })
+
   useEffect(() => {
     fetch('/auth')
     .then(r => {
@@ -44,9 +58,12 @@ function App() {
       })
   }, [])
 
-
   function onLogin(user) {
     setUser(user)
+  }
+
+  function handleNewEvent(newEvent) {
+    setEvents([...events, newEvent])
   }
 
   
@@ -58,11 +75,8 @@ if (loading) return <h1>Loading...</h1>
         <Route exact path='/' element={<LandingPage user={user}/>} />
         <Route exact path='/login' element={<LoginPage onLogin={onLogin}/>} />
         <Route exact path='/events' element={<ShowEvents user={user} events={events} loading={loading}/>} />
-        <Route exact path='/create' element={<CreateEvent />} />
+        <Route exact path='/create' element={<CreateEvent user={user} handleNewEvent={handleNewEvent}/>} />
       </Routes>
-      <footer>
-        <p className='text-center footer-text'>Created by John Ly</p>
-      </footer>
     </div>
   );
 }
