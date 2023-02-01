@@ -6,6 +6,13 @@ before_action :check_owner, only: [:update, :destroy]
         render json: Event.all
     end
 
+    def show
+        event = Event.find_by(id: params[:id])
+        render json: event, status: :ok
+    rescue ActiveRecord::RecordInvalid => e 
+        render json: {errors: e.record.errors.full_messages}, status: 406
+    end
+
     def create
         event = Event.create!(event_params)
         render json: event, status: :created

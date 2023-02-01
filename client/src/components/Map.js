@@ -25,7 +25,7 @@ function Map({ events }) {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyA41zVVH2Adcnb2HnLwVxwuAl5-HF1GlEE",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
   });
 
   const arrOfAddress = events.map((event) => {

@@ -9,9 +9,12 @@ import Map from './Map';
 
 function ShowEvents({ user, events, loading }){
 
+    console.log(events)
+
     const eventDiv = events?.map(event => {
         return (
-            <EventCard 
+            <EventCard
+            id={event.id}
             name={event.name}
             address={event.address}
             city={event.city}
