@@ -22,7 +22,7 @@ Google Maps API and a Geocoder API
 
 
 To Do List
-  -add user name to who created the event on EventPage
   -organize events on EventPage better
   -add markers on map of where events are being held
-  -add EventDetailPage
+  -add comments on EventDetailPage
+  -create sign up page

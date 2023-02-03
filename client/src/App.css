@@ -1,3 +1,5 @@
+
+
 .landing-page {
   margin: 0;
   background-color: lightgray;
@@ -34,6 +36,15 @@
   background-repeat: no-repeat;
   background-position: center center; 
   height: 70vh;
+}
+
+.login-page {
+  background-color: lightgrey;
+  background-image: url('https://i.pinimg.com/originals/69/f4/af/69f4af75f76986b9cb332064ff9a0fc9.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; 
+  height: 85vh;
 }
 
 .map {

@@ -21,7 +21,7 @@ function NavBar({ user, setUser }) {
           <Container>
             <Navbar.Brand href="/events">SOCCER CONNECT</Navbar.Brand>
             <Nav className="me-auto" style={{ margin: "5px", gap: "30px" }}>
-              <Nav.Link href="">Home</Nav.Link>
+              <Nav.Link href="/events">Home</Nav.Link>
               <NavDropdown title="Events">
                 <NavDropdown.Item href="/events">Find Events</NavDropdown.Item>
                 <NavDropdown.Item href="/create">

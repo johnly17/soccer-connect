@@ -1,7 +1,8 @@
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import FormGroup from "react-bootstrap/FormGroup";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +36,13 @@ function LoginPage({ onLogin }) {
   }
 
   return (
-    <div>
+    <div className="login-page">
+      <h1
+        className="text-center"
+        style={{ margin: "0px 0 -40px 0", paddingTop: "40px" }}
+      >
+        Welcome Back!
+      </h1>
       <Card style={{ width: "50%", margin: "100px auto", padding: "20px" }}>
         <Form onSubmit={handleLogin}>
           <Form.Group>
@@ -54,7 +61,19 @@ function LoginPage({ onLogin }) {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-          <Button style={{ width: "20%", marginTop: "10px" }} type='submit'>Log In</Button>
+          <Row>
+            <Col>
+              <Button style={{ width: "80%", marginTop: "10px" }} type="submit">
+                Log In
+              </Button>
+            </Col>
+            <Col>
+              <p style={{width: '100%', padding: '5px 0 0 0'}}>
+                Don't have an account yet?{" "}
+                <a href="/signup">Create a Soccer Connect account here!</a>
+              </p>
+            </Col>
+          </Row>
         </Form>
       </Card>
       {loginError && (
