@@ -18,7 +18,6 @@ function CreateEvent({ user, handleNewEvent }) {
   const [eventZipcode, setEventZipcode] = useState(0)
   const [newEventError, setNewEventError] = useState('')
 
-  console.log(user)
   const nav = useNavigate()
 
   function handleEventSubmit(e) {

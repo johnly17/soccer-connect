@@ -39,7 +39,7 @@ function EventCard({
           <Card.Text>
             <strong>Time:</strong> {time}
           </Card.Text>
-          <Button href={`/event/${id}`} style={{ width: "40%", margin: "0 auto" }}>View Event</Button>
+          <Button href={`/event/${id}`} style={{ width: "40%", margin: "0 auto" }} variant="success">View Event</Button>
           {/* {user ? <Button href={`/event/${id}`} style={{ width: "40%", margin: "0 auto" }}>View Event</Button> : null} */}
         </Card>
       </Col>

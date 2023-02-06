@@ -22,7 +22,8 @@ Google Maps API and a Geocoder API
 
 
 To Do List
-  -organize events on EventPage better
   -add markers on map of where events are being held
   -add comments on EventDetailPage
-  -create sign up page
+  -make sure users logged in can't rsvp
+  -user that created an event can delete the event
+  -create a profile page

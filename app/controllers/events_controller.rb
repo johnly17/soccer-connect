@@ -29,7 +29,7 @@ before_action :check_owner, only: [:update, :destroy]
     def check_owner
         unless Event.find(params[:id]).user_id == session[:user_id]
             head :forbidden
-          end
+        end
     end
 
 end
