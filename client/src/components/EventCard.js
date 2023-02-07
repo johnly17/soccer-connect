@@ -31,7 +31,7 @@ function EventCard({
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
           <Card.Text>
-            <strong>Where:</strong> {address} {city} {state} {zipcode}
+            <strong>Where:</strong> {address}, {city}, {state} {zipcode}
           </Card.Text>
           <Card.Text>
             <strong>When:</strong> {date}

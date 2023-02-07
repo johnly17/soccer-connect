@@ -2,6 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Modal from 'react-bootstrap/Modal';
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -17,6 +18,11 @@ function CreateEvent({ user, handleNewEvent }) {
   const [eventState, setEventState] = useState('')
   const [eventZipcode, setEventZipcode] = useState(0)
   const [newEventError, setNewEventError] = useState('')
+  
+  // const [createShow, setCreateShow] = useState(false);
+
+  // const handleClose = () => setCreateShow(false);
+  // const handleShow = () => setCreateShow(true);
 
   const nav = useNavigate()
 
@@ -135,8 +141,16 @@ function CreateEvent({ user, handleNewEvent }) {
           Cancel
         </Button>
       </Form>
-      {newEventError ? (newEventError.map(e => <div><h1 style={{ textAlign: 'center', color: 'red' }}>{e[1]}</h1></div>)
+      {newEventError ? (newEventError.map(e => <div><h1 style={{ textAlign: 'center', color: 'red' }}>{e[0]} {e[1]}</h1></div>)
             ) : null}
+      {/* {newEventError ? 
+      <Modal createShow={createShow}>
+        {newEventError?.map(e => {
+          return (<Modal.Body className='text-center'>
+            {e[0]} {e[1]}
+          </Modal.Body>)
+        })}
+      </Modal> : null} */}
     </div>
   );
 }

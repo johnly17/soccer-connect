@@ -20,7 +20,7 @@ puts 'seeding event'
 event1 = Event.create(
     user_id: User.last.id,
     name: 'Soccer Party!',
-    address: '75 Champ Blvd.',
+    address: '75 Champ Blvd',
     city: 'Manheim',
     state: 'PA',
     zipcode: 17545,

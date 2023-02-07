@@ -69,7 +69,7 @@ function LoginPage({ onLogin }) {
             </Col>
             <Col>
               <p style={{width: '100%', padding: '5px 0 0 0'}}>
-                Don't have an account yet?{" "}
+                Don't have an account?{" "}
                 <a href="/signup">Create a Soccer Connect account here!</a>
               </p>
             </Col>

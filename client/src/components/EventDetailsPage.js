@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Modal from 'react-bootstrap/Modal';
 
-function EventDetailsPage({ user, events, loading }) {
+function EventDetailsPage({ user, events, loading, deleteEvent }) {
   const [eventDetail, setEventDetail] = useState([]);
   const [attendances, setAttedances] = useState([]);
   const [attendingUsers, setAttendingUsers] = useState([]);
@@ -77,6 +77,16 @@ function EventDetailsPage({ user, events, loading }) {
     });
   }
 
+  function handeDeleteEvent() {
+    fetch(`/events/${id}`, {
+      method: "DELETE"
+    })
+    .then(r => r.json())
+    .then(data => {
+      deleteEvent(data)
+    })
+  }
+
   const isAttending = (attendingUsers.some(attender => {
     return attender.first_name === user.first_name
   }))
@@ -104,8 +114,9 @@ function EventDetailsPage({ user, events, loading }) {
           <Col>
             <Card style={{ width: "100%" }}>
               <Card.Header>
-                <strong>Hosted By:</strong> {eventDetail.user?.first_name}{" "}
-                {eventDetail.user?.last_name}
+                <strong>Hosted By:</strong> 
+                {user.first_name === eventDetail.user?.first_name ? ' You' :` ${eventDetail.user?.first_name}
+                ${eventDetail.user?.last_name}`}
               </Card.Header>
               <Card.Body>
                 <Card.Title>{eventDetail.name}</Card.Title>
@@ -123,8 +134,8 @@ function EventDetailsPage({ user, events, loading }) {
                   </Col>
                 </Row>
                 <Card.Text>
-                  <strong>Where:</strong> {eventDetail.address}{" "}
-                  {eventDetail.city} {eventDetail.state} {eventDetail.zipcode}
+                  <strong>Where:</strong> {eventDetail.address},{" "}
+                  {eventDetail.city}, {eventDetail.state} {eventDetail.zipcode}
                 </Card.Text>
                 {user.length !== 0 ? (
                   <Button
@@ -228,9 +239,12 @@ function EventDetailsPage({ user, events, loading }) {
       </Container>
       <div style={{ margin: "30px auto 0 auto", textAlign: "center" }}>
         {user.first_name === eventDetail.user?.first_name ? (
-          <Button variant="danger" className="text-center">
+          <div>
+          <Button style={{marginRight: '10px'}}>Edit</Button>
+          <Button href='/events' variant="danger" className="text-center" onClick={handeDeleteEvent}>
             Delete Event
           </Button>
+          </div>
         ) : null}
       </div>
     </div>
