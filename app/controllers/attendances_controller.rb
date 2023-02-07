@@ -1,5 +1,6 @@
 class AttendancesController < ApplicationController
     before_action :set_event
+    # before_action :check_user, only: [:destroy]
 
     def index
         render json: Attendance.all
@@ -23,14 +24,21 @@ class AttendancesController < ApplicationController
 
     def destroy
         attendance = Attendance.find_by(id: params[:id])
-        attendance.destroy
-        head :no_content
+        attendance.present?
+            attendance.destroy
+            head :no_content
     end
 
     private
 
     def set_event
         event = Event.find_by(id: params[:event_id])
+    end
+
+    def check_user
+        unless Attendance.find(params[:id]).user_id == session[:user_id]
+            head :forbidden
+        end
     end
 
 end

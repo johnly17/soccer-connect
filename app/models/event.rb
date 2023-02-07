@@ -5,7 +5,7 @@ class Event < ApplicationRecord
 
   belongs_to :user
   
-  has_many :attendances
+  has_many :attendances, dependent: :destroy
   has_many :attending_users, through: :attendances, source: :user
   
   has_many :comments

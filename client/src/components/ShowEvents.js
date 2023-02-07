@@ -29,7 +29,7 @@ function ShowEvents({ user, events, loading }){
 
     if (loading) return <h1>Loading...</h1>
     return (
-        <div style={{marginTop: '20px'}}>
+        <div style={{paddingTop: '30px'}}>
             {user.length !== 0 ? <h1 className='text-center' style={{marginBottom: '40px'}}>Welcome, {user.first_name}!</h1> : null}
             <h5 className='text-center' style={{marginBottom: '-10px'}}>Search for events by a city near you!</h5>
             <Form style={{width: '30%', margin: '0 auto', marginTop: '20px'}}>

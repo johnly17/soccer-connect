@@ -7,13 +7,19 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import Modal from 'react-bootstrap/Modal';
 
 function EventDetailsPage({ user, events, loading }) {
   const [eventDetail, setEventDetail] = useState([]);
+  const [attendances, setAttedances] = useState([]);
   const [attendingUsers, setAttendingUsers] = useState([]);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [userRSVP, setUserRSVP] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const { id } = useParams();
 
@@ -27,8 +33,13 @@ function EventDetailsPage({ user, events, loading }) {
       });
   }, [id]);
 
-  function handleRSVP(e) {
-    e.preventDefault();
+  useEffect(() => {
+    fetch('/attendances')
+      .then(r => r.json())
+      .then(data => setAttedances(data))
+  }, [])
+
+  function handleRSVP() {
     fetch("/attendances", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -41,20 +52,6 @@ function EventDetailsPage({ user, events, loading }) {
         r.json().then((data) => {
           setAttendingUsers([...attendingUsers, data]);
           setUserRSVP(true);
-        });
-      }
-    });
-  }
-
-  function handleDeleteRSVP(e) {
-    e.preventDefault();
-    fetch(`/attendances`, {
-      method: "DELETE",
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((data) => {
-          setAttendingUsers(attendingUsers.filter(user => user !== data.id));
-          setUserRSVP(false);
         });
       }
     });
@@ -74,17 +71,23 @@ function EventDetailsPage({ user, events, loading }) {
       if (r.ok) {
         r.json().then((data) => {
           setComments([...comments, data]);
+          setNewComment('')
         });
       }
     });
   }
+
+  const isAttending = (attendingUsers.some(attender => {
+    return attender.first_name === user.first_name
+  }))
+
   // console.log(eventDetail)
   // console.log(user);
   // console.log(attendingUsers)
-  console.log(userRSVP)
+  // console.log(userRSVP)
 
-  //need two functions that posts user RSVP to attendances and a function that deletes user RSVP to attendances
   //need function that allows users to delete their comments
+  //funtion that allows user to edit their events
 
   if (loading) return <h1>Loading...</h1>;
   return (
@@ -125,14 +128,13 @@ function EventDetailsPage({ user, events, loading }) {
                 </Card.Text>
                 {user.length !== 0 ? (
                   <Button
-                    variant="primary"
+                    style={{background: 'white', border: '0'}}
                     type="submit"
-                    href={`/event/${id}}`}
                   >
-                    {userRSVP ? (
-                      <Button onClick={handleDeleteRSVP}>Un-RSVP</Button>
+                    {isAttending ? (
+                      <Button onClick={handleShow} variant="success">RSVP'd!</Button>
                     ) : (
-                      <Button onClick={handleRSVP}>RSVP</Button>
+                      <Button href={`/event/${id}}`} onClick={handleRSVP}>RSVP</Button>
                     )}
                   </Button>
                 ) : (
@@ -140,6 +142,12 @@ function EventDetailsPage({ user, events, loading }) {
                     Log in to RSVP!
                   </Button>
                 )}
+
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Body className='text-center'>Hey! You've already RSVP'd!</Modal.Body>
+                  <Button onClick={handleClose} style={{ width: '20%', margin: '10px auto'}}>Close</Button>
+                </Modal>
+
               </Card.Body>
             </Card>
           </Col>

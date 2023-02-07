@@ -20,6 +20,8 @@ before_action :check_owner, only: [:update, :destroy]
         render json: {errors: e.record.errors.full_messages}, status: :unprocessable_entity
     end
 
+    
+
     private
 
     def event_params
@@ -31,5 +33,7 @@ before_action :check_owner, only: [:update, :destroy]
             head :forbidden
         end
     end
+
+
 
 end
