@@ -9,8 +9,8 @@ function Map({ events }) {
 
   const containerStyle = {
     margin: "30px auto 0 auto",
-    width: "600px",
-    height: "400px",
+    width: "800px",
+    height: "500px",
     borderRadius: "10px",
   };
 
@@ -54,7 +54,7 @@ function Map({ events }) {
       mapContainerClassName="shadow-lg"
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={3}
+      zoom={4}
       onClick={() => setActiveMarker(null)}
     >
       {events.map(event => {

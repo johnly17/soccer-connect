@@ -7,7 +7,9 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
+
+import Comments from "./Comments";
 
 function EventDetailsPage({ user, events, loading, deleteEvent }) {
   const [eventDetail, setEventDetail] = useState([]);
@@ -34,10 +36,10 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
   }, [id]);
 
   useEffect(() => {
-    fetch('/attendances')
-      .then(r => r.json())
-      .then(data => setAttedances(data))
-  }, [])
+    fetch("/attendances")
+      .then((r) => r.json())
+      .then((data) => setAttedances(data));
+  }, []);
 
   function handleRSVP() {
     fetch("/attendances", {
@@ -56,6 +58,15 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
       }
     });
   }
+  function handeDeleteEvent() {
+    fetch(`/events/${id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        deleteEvent(data);
+      });
+  }
 
   function handleNewComment(e) {
     e.preventDefault();
@@ -71,33 +82,31 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
       if (r.ok) {
         r.json().then((data) => {
           setComments([...comments, data]);
-          setNewComment('')
+          setNewComment("");
         });
       }
     });
   }
 
-  function handeDeleteEvent() {
-    fetch(`/events/${id}`, {
-      method: "DELETE"
-    })
-    .then(r => r.json())
-    .then(data => {
-      deleteEvent(data)
-    })
-  }
-
-  const isAttending = (attendingUsers.some(attender => {
-    return attender.first_name === user.first_name
-  }))
-
-  // console.log(eventDetail)
-  // console.log(user);
-  // console.log(attendingUsers)
-  // console.log(userRSVP)
-
   //need function that allows users to delete their comments
   //funtion that allows user to edit their events
+
+  function handleDeleteComment() {
+    fetch(`/comments/${comments.id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data.id)
+        // setComments(comments.filter((comment) => comment.id !== data.id));
+      });
+  }
+
+  console.log(comments.id)
+
+  const isAttending = attendingUsers.some((attender) => {
+    return attender.first_name === user.first_name;
+  });
 
   if (loading) return <h1>Loading...</h1>;
   return (
@@ -114,38 +123,45 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
           <Col>
             <Card style={{ width: "100%" }}>
               <Card.Header>
-                <strong>Hosted By:</strong> 
-                {user.first_name === eventDetail.user?.first_name ? ' You' :` ${eventDetail.user?.first_name}
+                <strong>Hosted By:</strong>
+                {user.first_name === eventDetail.user?.first_name
+                  ? " You"
+                  : ` ${eventDetail.user?.first_name}
                 ${eventDetail.user?.last_name}`}
               </Card.Header>
               <Card.Body>
-                <Card.Title>{eventDetail.name}</Card.Title>
-                <Card.Text>{eventDetail.description}</Card.Text>
+                <Card.Title>{eventDetail?.name}</Card.Title>
+                <Card.Text>{eventDetail?.description}</Card.Text>
                 <Row>
                   <Col>
                     <Card.Text>
-                      <strong>When:</strong> {eventDetail.date}
+                      <strong>When:</strong> {eventDetail?.date}
                     </Card.Text>
                   </Col>
                   <Col>
                     <Card.Text>
-                      <strong>Time:</strong> {eventDetail.time}
+                      <strong>Time:</strong> {eventDetail?.time}
                     </Card.Text>
                   </Col>
                 </Row>
                 <Card.Text>
-                  <strong>Where:</strong> {eventDetail.address},{" "}
-                  {eventDetail.city}, {eventDetail.state} {eventDetail.zipcode}
+                  <strong>Where:</strong> {eventDetail?.address},{" "}
+                  {eventDetail?.city}, {eventDetail?.state}{" "}
+                  {eventDetail?.zipcode}
                 </Card.Text>
                 {user.length !== 0 ? (
                   <Button
-                    style={{background: 'white', border: '0'}}
+                    style={{ background: "white", border: "0" }}
                     type="submit"
                   >
                     {isAttending ? (
-                      <Button onClick={handleShow} variant="success">RSVP'd!</Button>
+                      <Button onClick={handleShow} variant="success">
+                        RSVP'd!
+                      </Button>
                     ) : (
-                      <Button href={`/event/${id}}`} onClick={handleRSVP}>RSVP</Button>
+                      <Button href={`/event/${id}}`} onClick={handleRSVP}>
+                        RSVP
+                      </Button>
                     )}
                   </Button>
                 ) : (
@@ -155,10 +171,16 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
                 )}
 
                 <Modal show={show} onHide={handleClose}>
-                  <Modal.Body className='text-center'>Hey! You've already RSVP'd!</Modal.Body>
-                  <Button onClick={handleClose} style={{ width: '20%', margin: '10px auto'}}>Close</Button>
+                  <Modal.Body className="text-center">
+                    Hey! You've already RSVP'd!
+                  </Modal.Body>
+                  <Button
+                    onClick={handleClose}
+                    style={{ width: "20%", margin: "10px auto" }}
+                  >
+                    Close
+                  </Button>
                 </Modal>
-
               </Card.Body>
             </Card>
           </Col>
@@ -194,14 +216,30 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
           {comments?.length > 0 ? (
             comments.map((comment) => {
               return (
-                <Card.Text style={{ paddingTop: "10px", fontSize: ".9rem" }}>
-                  <Container style={{ display: "flex", alignItems: "center" }}>
+                <Container
+                  style={{ display: "flex", justifyContent: "space-around", alignItems: 'center' }}
+                >
+                  <Container
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
                     <Card.Img
-                      style={{ width: "40px", height: "35px" }}
+                      style={{
+                        width: "40px",
+                        height: "35px",
+                        marginRight: "10px",
+                      }}
                       src={`${comment.user.image}`}
                     />
-                    {comment.user.first_name} {comment.user.last_name}:{" "}
-                    {comment.body}
+                    <Card.Text id={comment.id} style={{ }}>
+                      {comment.user.first_name} {comment.user.last_name}:{" "}
+                      {comment.body}
+                    </Card.Text>
+                  </Container>
+                  <Container>
                     {comment.user.id === user.id ? (
                       <Button
                         style={{
@@ -209,12 +247,14 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
                           border: "0",
                           marginLeft: "10px",
                         }}
+                        // href={`/event/${id}`}
+                        onClick={handleDeleteComment}
                       >
                         🗑️
                       </Button>
                     ) : null}
                   </Container>
-                </Card.Text>
+                </Container>
               );
             })
           ) : (
@@ -223,7 +263,7 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
             </Card.Text>
           )}
           {user.length !== 0 ? (
-            <Form style={{ padding: "15px" }} onSubmit={handleNewComment}>
+            <Form style={{ padding: "15px" }}>
               <Form.Control
                 placeholder="new comment..."
                 type="text"
@@ -240,10 +280,15 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
       <div style={{ margin: "30px auto 0 auto", textAlign: "center" }}>
         {user.first_name === eventDetail.user?.first_name ? (
           <div>
-          <Button style={{marginRight: '10px'}}>Edit</Button>
-          <Button href='/events' variant="danger" className="text-center" onClick={handeDeleteEvent}>
-            Delete Event
-          </Button>
+            <Button style={{ marginRight: "10px" }}>Edit</Button>
+            <Button
+              href="/events"
+              variant="danger"
+              className="text-center"
+              onClick={handeDeleteEvent}
+            >
+              Delete Event
+            </Button>
           </div>
         ) : null}
       </div>

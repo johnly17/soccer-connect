@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  geocoded_by :city_state
+  geocoded_by :full_address
   after_validation :geocode
 
   validates :name, :description, :date, :time, :address, :city, :state, :zipcode, presence: true
@@ -14,8 +14,8 @@ class Event < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :users_comments, through: :comments, source: :user
 
-  def city_state
-    ["#{city}, #{state}"].compact.join(', ')
+  def full_address
+    ["#{address}, #{city}, #{state}, #{zipcode}"].compact.join(', ')
   end 
 
 end

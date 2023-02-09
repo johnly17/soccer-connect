@@ -19,8 +19,12 @@ class CommentsController < ApplicationController
 
     def destroy
         comment = Comment.find_by(id: params[:id])
-        comment.destroy
-        head :no_content
+        if comment.present?
+            comment.destroy
+            head :no_content
+        else 
+            render json: {error: "comment not found"}, status: 404
+        end
     end
 
 end
