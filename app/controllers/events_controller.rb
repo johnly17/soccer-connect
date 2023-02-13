@@ -22,10 +22,6 @@ class EventsController < ApplicationController
 
     def create
         @event = Event.new(event_params)
-        # @event.city_and_state = [event_params[:city], event_params[:state]].join(", ")
-        # result = Geocoder.search(@event.city_and_state)
-        # puts result.inspect
-    
         if @event.save
           @event.update(
             latitude: Geocoder.search("#{@event.address} + #{@event.city} + #{@event.state} + #{@event.zipcode}").first.coordinates[0], 
@@ -35,7 +31,16 @@ class EventsController < ApplicationController
         else
           render json: {errors: @event.errors}, status: :unprocessable_entity
         end
-      end
+    end
+
+    def update
+        @event = Event.find_by(id: params[:id])
+        if @event.update(event_params)
+            render json: @event, status: :ok
+        else
+            render json: {error: 'Somethign went wrong'}, status: :unprocessable_entity
+        end
+    end
     
     def destroy 
         event = Event.find_by(id: params[:id])
