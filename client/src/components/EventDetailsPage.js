@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import Container from "react-bootstrap/Container";
@@ -33,6 +33,7 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
   const handleShow = () => setShow(true);
 
   const { id } = useParams();
+  const nav = useNavigate();
 
   useEffect(() => {
     fetch(`/events/${id}`)
@@ -41,6 +42,14 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
         setEventDetail(data);
         setAttendingUsers(data.attending_users);
         setComments(data.comments);
+        setEditName(data.name)
+        setEditDesc(data.description)
+        setEditWhen(data.date)
+        setEditTime(data.time)
+        setEditAddress(data.address)
+        setEditCity(data.city)
+        setEditState(data.state)
+        setEditZipcode(data.zipcode)
       });
   }, [id]);
 
@@ -99,7 +108,7 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
     e.preventDefault();
     fetch(`/events/${id}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: editName,
         address: editAddress,
@@ -113,13 +122,18 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
     })
     .then(r => {
       if (r.ok) {
-        r.json.then(data => {
-
+        r.json().then(data => {
+          setEventDetail(data);
+          nav(`/events`)
+        })
+      } else {
+        r.json().then(data => {
+          console.log(data.error)
         })
       }
     })
   }
-  
+
 
   const commentList = comments?.map((comment) => {
     return (
@@ -146,9 +160,9 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
       {editting ? (
         <Card style={{ width: "50%", margin: "0 auto", marginTop: "80px" }}>
           <Card.Header>Update Event Info:</Card.Header>
-          <Form style={{ padding: "20px" }}>
+          <Form style={{ padding: "20px" }} onSubmit={handleEventEdit}>
             <Form.Label>Event Name:</Form.Label>
-            <Form.Control placeholder={eventDetail.name} value={editName} onChange={(e) => setEditName(e.target.value)}/>
+            <Form.Control value={editName} onChange={(e) => setEditName(e.target.value)}/>
             <Form.Label>Description:</Form.Label>
             <Form.Control placeholder={eventDetail.description} value={editDesc} onChange={(e) => setEditDesc(e.target.value)}/>
             <Form.Label>When:</Form.Label>
@@ -163,11 +177,11 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
             <Form.Control placeholder={eventDetail.state} type='text' value={editState} onChange={(e) => setEditState(e.target.value)}/>
             <Form.Label>Zipcode:</Form.Label>
             <Form.Control type='number' value={editZipcode} onChange={(e) => setEditZipcode(e.target.value)}/>
-          </Form>
-          <Container style={{marginBottom: '10px'}}>
+          <Container style={{marginBottom: '10px', marginTop: '10px'}}>
             <Button variant='warning' href={`/event/${id}`} style={{marginRight: '5px'}}>Cancel</Button>
-            <Button variant='success'>Save</Button>
+            <Button type='submit' variant='success'>Save</Button>
           </Container>
+          </Form>
         </Card>
       ) : (
         <div>

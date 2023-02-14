@@ -38,7 +38,7 @@ class EventsController < ApplicationController
         if @event.update(event_params)
             render json: @event, status: :ok
         else
-            render json: {error: 'Somethign went wrong'}, status: :unprocessable_entity
+            render json: {error: 'Something went wrong'}, status: :unprocessable_entity
         end
     end
     

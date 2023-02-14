@@ -29,13 +29,6 @@ function ShowEvents({ user, events, loading }){
     return (
         <div style={{paddingTop: '30px'}}>
             {user.length !== 0 ? <h1 className='text-center' style={{marginBottom: '40px'}}>Welcome, {user.first_name}!</h1> : null}
-            <h5 className='text-center' style={{marginBottom: '-10px'}}>Search for events by a city near you!</h5>
-            <Form style={{width: '30%', margin: '0 auto', marginTop: '20px'}}>
-                <Form.Control 
-                placeholder='search for an event...' 
-                className='shadow'
-                />
-            </Form>
             <Map events={events}/>
             <Container>
                 <Row xs={3}>

@@ -1,8 +1,6 @@
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-import { useNavigate } from 'react-router-dom'
 
 
 function Comments({
@@ -16,7 +14,6 @@ function Comments({
   loading
 }) {
 
-const nav = useNavigate()
   
 
   function handleDeleteComment(e) {

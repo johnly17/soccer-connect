@@ -73,7 +73,6 @@ function App() {
     const updatedEvents = events.filter(event => event.id !== deletedEvent.id)
     setEvents(updatedEvents)
   }
-
   
 if (loading) return <h1>Loading...</h1>
   return (
@@ -85,7 +84,7 @@ if (loading) return <h1>Loading...</h1>
         <Route exact path='/signup' element={<Signup setUser={setUser}/>} />
         <Route exact path='/myprofile' element={<ProfilePage loading={loading} user={user}/>} />
         <Route exact path='/events' element={<ShowEvents user={user} events={events} loading={loading}/>} />
-        <Route exact path='/event/:id' element={<EventDetailsPage user={user} events={events} loading={loading} deleteEvent={deleteEvent}/>} />
+        <Route exact path='/event/:id' element={<EventDetailsPage user={user} events={events} loading={loading} deleteEvent={deleteEvent}/>}/>
         <Route exact path='/create' element={<CreateEvent user={user} handleNewEvent={handleNewEvent}/>} />
       </Routes>
     </div>
