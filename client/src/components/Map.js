@@ -31,7 +31,7 @@ function Map({ events }) {
 
   const markerRef = useRef();
 
-
+// for search input
   const onSearchInput = async (event) => {
     setSearch(event.target.value);
     const input = event.target.value;
