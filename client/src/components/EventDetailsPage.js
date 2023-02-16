@@ -124,7 +124,7 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
       if (r.ok) {
         r.json().then(data => {
           setEventDetail(data);
-          nav(`/events`)
+          nav(`/find-events`)
         })
       } else {
         r.json().then(data => {
@@ -187,7 +187,7 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
         <div>
           <Button
             style={{ margin: "20px 0 0 20px" }}
-            href="/events"
+            href="/find-events"
             variant="warning"
           >
             Back

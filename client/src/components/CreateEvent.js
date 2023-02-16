@@ -137,7 +137,7 @@ function CreateEvent({ user, handleNewEvent }) {
         <Button variant="primary" type="submit" style={{marginRight: '10px'}}>
           Create Event
         </Button>
-        <Button variant="primary" href='/events'>
+        <Button variant="primary" href='/find-events'>
           Cancel
         </Button>
       </Form>
