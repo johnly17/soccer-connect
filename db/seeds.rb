@@ -26,7 +26,7 @@ event1 = Event.create(
     zipcode: 17545,
     time: '7:00 PM',
     date: '2/10/23',
-    description: 'Come play soccer!'
+    description: 'Come play soccer!',
     latitude: 39.652966,
     longitude: -104.875499
 )
