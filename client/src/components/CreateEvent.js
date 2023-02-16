@@ -47,7 +47,7 @@ function CreateEvent({ user, handleNewEvent }) {
       if (r.ok) {
         r.json().then(data => {
           handleNewEvent(data)
-          nav('/events')
+          nav('/find-events')
         })
       } else {
         r.json().then(data => {
