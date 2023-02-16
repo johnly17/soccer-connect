@@ -19,11 +19,11 @@ function NavBar({ user, setUser }) {
       {user.length !== 0 ? (
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="/events">SOCCER CONNECT ⚽</Navbar.Brand>
+            <Navbar.Brand href="/find-events">SOCCER CONNECT ⚽</Navbar.Brand>
             <Nav className="me-auto" style={{ margin: "5px", gap: "30px" }}>
-              <Nav.Link href="/events">Home</Nav.Link>
+              <Nav.Link href="/find-events">Home</Nav.Link>
               <NavDropdown title="Events">
-                <NavDropdown.Item href="/events">Find Events</NavDropdown.Item>
+                <NavDropdown.Item href="/find-events">Find Events</NavDropdown.Item>
                 <NavDropdown.Item href="/create">
                   Create an Event
                 </NavDropdown.Item>
@@ -42,7 +42,7 @@ function NavBar({ user, setUser }) {
           <Container>
             <Nav className="me-auto" style={{ margin: "5px", gap: "30px" }}>
               <Navbar.Brand href='/'>SOCCER CONNECT ⚽</Navbar.Brand>
-              <Nav.Link href='/events'>View Events</Nav.Link>
+              <Nav.Link href='/find-events'>View Events</Nav.Link>
               <Nav.Link href='login'>Log In</Nav.Link>
             </Nav>
           </Container>

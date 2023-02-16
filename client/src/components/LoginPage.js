@@ -27,7 +27,7 @@ function LoginPage({ onLogin }) {
       if (r.ok) {
         r.json().then((user) => {
           onLogin(user);
-          navigate("/events");
+          navigate("/find-events");
         });
       } else {
         r.json().then((data) => setLoginError(data.error));
