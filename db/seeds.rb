@@ -27,6 +27,8 @@ event1 = Event.create(
     time: '7:00 PM',
     date: '2/10/23',
     description: 'Come play soccer!'
+    latitude: 39.652966,
+    longitude: -104.875499
 )
 
 puts 'event seeded!'
