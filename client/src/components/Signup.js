@@ -1,9 +1,10 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Modal from 'react-bootstrap/Modal';
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Alert from 'react-bootstrap/Alert';
+
 
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
@@ -57,6 +58,7 @@ function Signup({ setUser }) {
         style={{
           width: "50%",
           margin: "100px auto",
+          marginBottom: '10px',
           padding: "15px",
           borderRadius: "10px",
         }}
@@ -114,8 +116,8 @@ function Signup({ setUser }) {
       </Card>
       {signupErrors
         ? signupErrors.map((e) => (
-            <div style={{marginTop: '-10px'}}>
-              <h2 style={{ textAlign: "center", color: "white", marginTop: '-10px' }}>{e[1]}</h2>
+            <div style={{marginTop: '5px'}}>
+              <Alert variant='danger' style={{ textAlign: "center", color: "red", width: '30%', margin: '0 auto' }}>{e[1]}</Alert>
             </div>
           ))
         : null}

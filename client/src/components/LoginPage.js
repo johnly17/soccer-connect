@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Alert from 'react-bootstrap/Alert';
+
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -85,7 +87,9 @@ function LoginPage({ onLogin }) {
               color: "red",
             }}
           >
-            {loginError}
+            <Alert variant='danger' style={{textAlign: "center", color: "red", width: '30%', margin: '0 auto'}}>
+              {loginError}
+              </Alert>
           </h1>
         </div>
       )}
