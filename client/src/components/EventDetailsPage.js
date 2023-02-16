@@ -314,7 +314,7 @@ function EventDetailsPage({ user, events, loading, deleteEvent }) {
                   Edit
                 </Button>
                 <Button
-                  href="/events"
+                  href="/find-events"
                   variant="danger"
                   className="text-center"
                   onClick={handeDeleteEvent}
