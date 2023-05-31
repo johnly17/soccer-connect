@@ -30,7 +30,7 @@ function Signup({ setUser }) {
         last_name: lastName,
         password: password,
         email: email,
-        image: image,
+        image: image ? image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaY9NCY7uqhdrALyjkFvWyO2HYlmeeITwcJg&usqp=CAU',
       }),
     }).then((r) => {
       if (r.ok) {

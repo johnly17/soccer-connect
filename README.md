@@ -27,3 +27,11 @@ To Do List
   -make sure users logged in can't rsvp
   -user that created an event can delete the event
   -create a profile page
+
+
+New Features 
+  -remove expired events
+  -Ruby active storage
+  -search autofil feature
+  -fix logout bug
+  
