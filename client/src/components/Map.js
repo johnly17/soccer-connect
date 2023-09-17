@@ -7,7 +7,6 @@ import {
   Marker,
   InfoWindow,
   useJsApiLoader,
-  Autocomplete
 } from "@react-google-maps/api";
 
 function Map({ events }) {
