@@ -16,6 +16,9 @@ Features of the Application:
   - User Authentication through Ruby's BCrypt Gem
   - Ability to store data in cookies
   - Google Maps API for real-time viewing of soccer events.
+  - Form Validations
+  - Event Creation and RSVP ability
+  - Searching Filter for Events
 
 Documetations Used:
 https://getbootstrap.com/docs/5.3/getting-started/download/
